@@ -1,0 +1,8 @@
+.logoDesign {
+  background-image: url(../assets/logo2.gif);
+  background-size: cover;
+  width: 10rem;
+  height: 5rem;
+  background-position: -9px -45px;
+  margin-top: 1rem;
+}
