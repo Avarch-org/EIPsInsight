@@ -1,4 +1,7 @@
-import React from 'react'
+/* eslint-disable prettier/prettier */
+/* eslint-disable react-hooks/rules-of-hooks */
+
+import React, { useEffect, useState } from 'react'
 import { CCard, CCardBody, CCol, CCardHeader, CRow } from '@coreui/react'
 import {
   CChartBar,
@@ -10,8 +13,25 @@ import {
 } from '@coreui/react-chartjs'
 import { DocsCallout } from 'src/components'
 
-const mayCharts = () => {
-  const random = () => Math.round(Math.random() * 100)
+const mayCharts = (props) => {
+  const [info, setInfo] = useState()
+
+  useEffect(() => {
+    setInfo(JSON.parse(localStorage.getItem('count')))
+  }, [])
+
+  useEffect(() => {
+
+    if (props.data !== undefined) {
+      setInfo(props.data)
+      localStorage.setItem('count', JSON.stringify(props.data))
+    } else {
+      localStorage.setItem('count', JSON.stringify(info))
+    }
+  }, [info])
+
+  console.log(info)
+
 
   return (
     <CRow>
@@ -28,39 +48,71 @@ const mayCharts = () => {
           <CCardBody>
             <CChartBar
               data={{
-                labels: [
-                  'Aug',
-                  'Sep',
-                  'Oct',
-                  'Nov',
-                  'Dec',
-                  'Jan',
-                  'Feb',
-                  'Mar',
-                  'Apr',
-                  'May',
-                  'Jun',
-                ],
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May'],
                 datasets: [
                   {
                     label: 'Core',
                     backgroundColor: '#f87979',
-                    data: [1, 6, 2, 1, 3, 0, 3, 7, 0, 4, 0],
+                    data: [
+                      `${info === undefined ? '0' : info[46][3]}`,
+                      `${info === undefined ? '0' : info[47][3]}`,
+                      `${info === undefined ? '0' : info[48][3]}`,
+                      `${info === undefined ? '0' : info[49][3]}`,
+                      `${info === undefined ? '0' : info[50][3]}`,
+                      `${info === undefined ? '0' : info[51][3]}`,
+                      `${info === undefined ? '0' : info[52][3]}`,
+                      `${info === undefined ? '0' : info[53][3]}`,
+                      `${info === undefined ? '0' : info[54][3]}`,
+                      `${info === undefined ? '0' : info[55][3]}`,
+                    ],
                   },
                   {
                     label: 'ERC',
                     backgroundColor: '#ffd43b',
-                    data: [1, 2, 3, 1, 5, 4, 1, 3, 7, 8, 0],
+                    data: [
+                      `${info === undefined ? '0' : info[46][4]}`,
+                      `${info === undefined ? '0' : info[47][4]}`,
+                      `${info === undefined ? '0' : info[48][4]}`,
+                      `${info === undefined ? '0' : info[49][4]}`,
+                      `${info === undefined ? '0' : info[50][4]}`,
+                      `${info === undefined ? '0' : info[51][4]}`,
+                      `${info === undefined ? '0' : info[52][4]}`,
+                      `${info === undefined ? '0' : info[53][4]}`,
+                      `${info === undefined ? '0' : info[54][4]}`,
+                      `${info === undefined ? '0' : info[55][4]}`,
+                    ],
                   },
                   {
                     label: 'Networking',
                     backgroundColor: '#a5d8ff',
-                    data: [0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+                    data: [
+                      `${info === undefined ? '0' : info[46][5]}`,
+                      `${info === undefined ? '0' : info[47][5]}`,
+                      `${info === undefined ? '0' : info[48][5]}`,
+                      `${info === undefined ? '0' : info[49][5]}`,
+                      `${info === undefined ? '0' : info[50][5]}`,
+                      `${info === undefined ? '0' : info[51][5]}`,
+                      `${info === undefined ? '0' : info[52][5]}`,
+                      `${info === undefined ? '0' : info[53][5]}`,
+                      `${info === undefined ? '0' : info[54][5]}`,
+                      `${info === undefined ? '0' : info[55][5]}`,
+                    ],
                   },
                   {
                     label: 'Interface',
                     backgroundColor: '#8ce99a',
-                    data: [0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+                    data: [
+                      `${info === undefined ? '0' : info[46][6]}`,
+                      `${info === undefined ? '0' : info[47][6]}`,
+                      `${info === undefined ? '0' : info[48][6]}`,
+                      `${info === undefined ? '0' : info[49][6]}`,
+                      `${info === undefined ? '0' : info[50][6]}`,
+                      `${info === undefined ? '0' : info[51][6]}`,
+                      `${info === undefined ? '0' : info[52][6]}`,
+                      `${info === undefined ? '0' : info[53][6]}`,
+                      `${info === undefined ? '0' : info[54][6]}`,
+                      `${info === undefined ? '0' : info[55][6]}`,
+                    ],
                   },
                 ],
               }}
@@ -75,19 +127,7 @@ const mayCharts = () => {
           <CCardBody>
             <CChartLine
               data={{
-                labels: [
-                  'Aug',
-                  'Sep',
-                  'Oct',
-                  'Nov',
-                  'Dec',
-                  'Jan',
-                  'Feb',
-                  'Mar',
-                  'Apr',
-                  'May',
-                  'Jun',
-                ],
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May'],
                 datasets: [
                   {
                     label: 'Core',
@@ -95,7 +135,18 @@ const mayCharts = () => {
                     borderColor: '#ff8787',
                     pointBackgroundColor: '#ff8787',
                     pointBorderColor: '#fff',
-                    data: [6, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+                    data: [
+                      `${info === undefined ? '0' : info[46][8]}`,
+                      `${info === undefined ? '0' : info[47][8]}`,
+                      `${info === undefined ? '0' : info[48][8]}`,
+                      `${info === undefined ? '0' : info[49][8]}`,
+                      `${info === undefined ? '0' : info[50][8]}`,
+                      `${info === undefined ? '0' : info[51][8]}`,
+                      `${info === undefined ? '0' : info[52][8]}`,
+                      `${info === undefined ? '0' : info[53][8]}`,
+                      `${info === undefined ? '0' : info[54][8]}`,
+                      `${info === undefined ? '0' : info[55][8]}`,
+                    ],
                   },
                   {
                     label: 'ERC',
@@ -103,7 +154,18 @@ const mayCharts = () => {
                     borderColor: '#748ffc',
                     pointBackgroundColor: '#748ffc',
                     pointBorderColor: '#fff',
-                    data: [0, 0, 0, 0, 0, 1, 2, 1, 1, 1, 0],
+                    data: [
+                      `${info === undefined ? '0' : info[46][9]}`,
+                      `${info === undefined ? '0' : info[47][9]}`,
+                      `${info === undefined ? '0' : info[48][9]}`,
+                      `${info === undefined ? '0' : info[49][9]}`,
+                      `${info === undefined ? '0' : info[50][9]}`,
+                      `${info === undefined ? '0' : info[51][9]}`,
+                      `${info === undefined ? '0' : info[52][9]}`,
+                      `${info === undefined ? '0' : info[53][9]}`,
+                      `${info === undefined ? '0' : info[54][9]}`,
+                      `${info === undefined ? '0' : info[55][9]}`,
+                    ],
                   },
                   {
                     label: 'Networking',
@@ -111,7 +173,18 @@ const mayCharts = () => {
                     borderColor: '#69db7c',
                     pointBackgroundColor: '#69db7c',
                     pointBorderColor: '#fff',
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    data: [
+                      `${info === undefined ? '0' : info[46][10]}`,
+                      `${info === undefined ? '0' : info[47][10]}`,
+                      `${info === undefined ? '0' : info[48][10]}`,
+                      `${info === undefined ? '0' : info[49][10]}`,
+                      `${info === undefined ? '0' : info[50][10]}`,
+                      `${info === undefined ? '0' : info[51][10]}`,
+                      `${info === undefined ? '0' : info[52][10]}`,
+                      `${info === undefined ? '0' : info[53][10]}`,
+                      `${info === undefined ? '0' : info[54][10]}`,
+                      `${info === undefined ? '0' : info[55][10]}`,
+                    ],
                   },
                   {
                     label: 'Interface',
@@ -119,7 +192,18 @@ const mayCharts = () => {
                     borderColor: '#fab005',
                     pointBackgroundColor: '#fab005',
                     pointBorderColor: '#fff',
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    data: [
+                      `${info === undefined ? '0' : info[46][11]}`,
+                      `${info === undefined ? '0' : info[47][11]}`,
+                      `${info === undefined ? '0' : info[48][11]}`,
+                      `${info === undefined ? '0' : info[49][11]}`,
+                      `${info === undefined ? '0' : info[50][11]}`,
+                      `${info === undefined ? '0' : info[51][11]}`,
+                      `${info === undefined ? '0' : info[52][11]}`,
+                      `${info === undefined ? '0' : info[53][11]}`,
+                      `${info === undefined ? '0' : info[54][11]}`,
+                      `${info === undefined ? '0' : info[55][11]}`,
+                    ],
                   },
                 ],
               }}
@@ -133,19 +217,7 @@ const mayCharts = () => {
           <CCardBody>
             <CChartDoughnut
               data={{
-                labels: [
-                  'Aug',
-                  'Sep',
-                  'Oct',
-                  'Nov',
-                  'Dec',
-                  'Jan',
-                  'Feb',
-                  'Mar',
-                  'Apr',
-                  'May',
-                  'Jun',
-                ],
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May'],
                 datasets: [
                   {
                     label: 'Draft EIPs',
@@ -162,7 +234,18 @@ const mayCharts = () => {
                       '#fab005',
                       '#fd7e14',
                     ],
-                    data: [2, 9, 5, 3, 8, 4, 4, 11, 7, 17, 0],
+                    data: [
+                      `${info === undefined ? '0' : info[46][2]}`,
+                      `${info === undefined ? '0' : info[47][2]}`,
+                      `${info === undefined ? '0' : info[48][2]}`,
+                      `${info === undefined ? '0' : info[49][2]}`,
+                      `${info === undefined ? '0' : info[50][2]}`,
+                      `${info === undefined ? '0' : info[51][2]}`,
+                      `${info === undefined ? '0' : info[52][2]}`,
+                      `${info === undefined ? '0' : info[53][2]}`,
+                      `${info === undefined ? '0' : info[54][2]}`,
+                      `${info === undefined ? '0' : info[55][2]}`,
+                    ],
                   },
                   {
                     label: 'Potential Proposal',
@@ -179,7 +262,18 @@ const mayCharts = () => {
                       '#fab005',
                       '#fd7e14',
                     ],
-                    data: [0, 0, 0, 0, 0, 0, 0, 13, 16, 8, 0],
+                    data: [
+                      `${info === undefined ? '0' : info[46][12]}`,
+                      `${info === undefined ? '0' : info[47][12]}`,
+                      `${info === undefined ? '0' : info[48][12]}`,
+                      `${info === undefined ? '0' : info[49][12]}`,
+                      `${info === undefined ? '0' : info[50][12]}`,
+                      `${info === undefined ? '0' : info[51][12]}`,
+                      `${info === undefined ? '0' : info[52][12]}`,
+                      `${info === undefined ? '0' : info[53][12]}`,
+                      `${info === undefined ? '0' : info[54][12]}`,
+                      `${info === undefined ? '0' : info[55][12]}`,
+                    ],
                   },
                 ],
               }}
@@ -230,19 +324,7 @@ const mayCharts = () => {
           <CCardBody>
             <CChartRadar
               data={{
-                labels: [
-                  'Aug',
-                  'Sep',
-                  'Oct',
-                  'Nov',
-                  'Dec',
-                  'Jan',
-                  'Feb',
-                  'Mar',
-                  'Apr',
-                  'May',
-                  'Jun',
-                ],
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May'],
                 datasets: [
                   {
                     label: 'Draft',
@@ -252,7 +334,18 @@ const mayCharts = () => {
                     pointBorderColor: '#fff',
                     pointHighlightFill: '#fff',
                     pointHighlightStroke: 'rgba(220, 220, 220, 1)',
-                    data: [2, 9, 5, 3, 8, 4, 4, 11, 7, 17, 0],
+                    data: [
+                      `${info === undefined ? '0' : info[46][2]}`,
+                      `${info === undefined ? '0' : info[47][2]}`,
+                      `${info === undefined ? '0' : info[48][2]}`,
+                      `${info === undefined ? '0' : info[49][2]}`,
+                      `${info === undefined ? '0' : info[50][2]}`,
+                      `${info === undefined ? '0' : info[51][2]}`,
+                      `${info === undefined ? '0' : info[52][2]}`,
+                      `${info === undefined ? '0' : info[53][2]}`,
+                      `${info === undefined ? '0' : info[54][2]}`,
+                      `${info === undefined ? '0' : info[55][2]}`,
+                    ],
                   },
                   {
                     label: 'Final',
@@ -262,7 +355,18 @@ const mayCharts = () => {
                     pointBorderColor: '#fff',
                     pointHighlightFill: '#fff',
                     pointHighlightStroke: 'rgba(151, 187, 205, 1)',
-                    data: [6, 0, 0, 0, 1, 1, 3, 1, 1, 2, 0],
+                    data: [
+                      `${info === undefined ? '0' : info[46][7]}`,
+                      `${info === undefined ? '0' : info[47][7]}`,
+                      `${info === undefined ? '0' : info[48][7]}`,
+                      `${info === undefined ? '0' : info[49][7]}`,
+                      `${info === undefined ? '0' : info[50][7]}`,
+                      `${info === undefined ? '0' : info[51][7]}`,
+                      `${info === undefined ? '0' : info[52][7]}`,
+                      `${info === undefined ? '0' : info[53][7]}`,
+                      `${info === undefined ? '0' : info[54][7]}`,
+                      `${info === undefined ? '0' : info[55][7]}`,
+                    ],
                   },
                 ],
               }}

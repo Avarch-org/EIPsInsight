@@ -1,4 +1,6 @@
-import React from 'react'
+/* eslint-disable react/prop-types */
+/* eslint-disable prettier/prettier */
+import React, { useEffect, useState } from 'react'
 
 import {
   CAvatar,
@@ -54,7 +56,7 @@ import avatar6 from 'src/assets/images/avatars/6.jpg'
 import WidgetsBrand from '../widgets/WidgetsBrand'
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 
   const progressExample = [
@@ -178,9 +180,27 @@ const Dashboard = () => {
     },
   ]
 
+  const [info, setInfo] = useState()
+  console.log(props.data)
+
+  useEffect(() => {
+    setInfo(JSON.parse(localStorage.getItem('count')))
+  }, [])
+
+  useEffect(() => {
+    if (props.data !== undefined) {
+      setInfo(props.data)
+      localStorage.setItem('count', JSON.stringify(props.data))
+    } else {
+      localStorage.setItem('count', JSON.stringify(info))
+    }
+  }, [info])
+
+  console.log(info)
+
   return (
     <>
-      <WidgetsDropdown />
+      <WidgetsDropdown data={props.data} />
       <CCard className="mb-4">
         <CCardBody>
           <CRow>
@@ -211,7 +231,12 @@ const Dashboard = () => {
           <CChartBar
             style={{ height: '500px', marginTop: '40px' }}
             data={{
-              labels: ['Standard Track', 'Meta', 'Informational'],
+              // labels: [`${standardTrackName}`, `${metaName}`, `${informationalName}`],
+              labels: [
+                `${info === undefined ? '0' : info[1][1]}`,
+                `${info === undefined ? '0' : info[1][2]}`,
+                `${info === undefined ? '0' : info[1][3]}`,
+              ],
               datasets: [
                 {
                   label: 'EIPs',
@@ -219,7 +244,11 @@ const Dashboard = () => {
                   borderColor: getStyle('--cui-info'),
                   pointHoverBackgroundColor: getStyle('--cui-info'),
                   borderWidth: 2,
-                  data: [421, 18, 5],
+                  data: [
+                    `${info === undefined ? '0' : info[2][1]}`,
+                    `${info === undefined ? '0' : info[2][2]}`,
+                    `${info === undefined ? '0' : info[2][3]}`,
+                  ],
                   fill: true,
                 },
               ],
