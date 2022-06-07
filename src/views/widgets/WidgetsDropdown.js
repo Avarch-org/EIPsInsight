@@ -17,22 +17,48 @@ import CIcon from '@coreui/icons-react'
 import { cilArrowBottom, cilArrowTop, cilOptions } from '@coreui/icons'
 
 function WidgetsDropdown(props) {
+  const [data, setInfo1] = useState()
   const [info, setInfo] = useState()
 
+  // async function fetchData() {
+  //   const fullResponse = await fetch(
+  //     'https://sheet.best/api/sheets/03682d10-57f7-4947-a6c9-32ee1cfc4e11',
+  //   )
+  //   const responseJson = await fullResponse.json()
+  //   console.log(responseJson)
+  //   setInfo1(responseJson)
+  // }
+
   useEffect(() => {
-    setInfo(JSON.parse(localStorage.getItem('count')))
+    // fetchData()
+    console.log(localStorage.getItem('count'))
+    if (localStorage.getItem('count') !== 'undefined') {
+      setInfo(JSON.parse(localStorage.getItem('count')))
+    }
   }, [])
 
   useEffect(() => {
     if (props.data !== undefined) {
+      console.log(props.data)
       setInfo(props.data)
       localStorage.setItem('count', JSON.stringify(props.data))
     } else {
+      console.log(props.data)
       localStorage.setItem('count', JSON.stringify(info))
     }
   }, [info])
 
   console.log(info)
+
+  function percentage(val, original) {
+    let value = info === undefined ? 0 : parseInt(info[55][val])
+    let value1 = info === undefined ? 0 : parseInt(info[54][val])
+    let denominator = info === undefined ? 0 : parseInt(info[2][original])
+    let increasePercentage = Math.round(((value - value1) / denominator) * 100 * 10) / 10
+
+    return increasePercentage
+  }
+
   return (
     <div>
       <div>
@@ -45,7 +71,8 @@ function WidgetsDropdown(props) {
                 <>
                   {info === undefined ? '0' : info[2][6]}{' '}
                   <span className="fs-6 fw-normal">
-                    (-12.4% <CIcon icon={cilArrowBottom} />)
+                    ({percentage(3, 6)}%{' '}
+                    <CIcon icon={percentage(3, 6) < 0 ? cilArrowBottom : cilArrowTop} />)
                   </span>
                 </>
               }
@@ -155,7 +182,8 @@ function WidgetsDropdown(props) {
                 <>
                   {`${info === undefined ? '0' : info[2][7]}`}{' '}
                   <span className="fs-6 fw-normal">
-                    (40.9% <CIcon icon={cilArrowTop} />)
+                    ({percentage(5, 7)}%{' '}
+                    <CIcon icon={percentage(5, 7) < 0 ? cilArrowBottom : cilArrowTop} />)
                   </span>
                 </>
               }
@@ -252,7 +280,8 @@ function WidgetsDropdown(props) {
                 <>
                   {`${info === undefined ? '0' : info[2][8]}`}{' '}
                   <span className="fs-6 fw-normal">
-                    (84.7% <CIcon icon={cilArrowTop} />)
+                    ({percentage(6, 8)}%{' '}
+                    <CIcon icon={percentage(6, 8) < 0 ? cilArrowBottom : cilArrowTop} />)
                   </span>
                 </>
               }
@@ -325,7 +354,8 @@ function WidgetsDropdown(props) {
                 <>
                   {`${info === undefined ? '0' : info[2][9]}`}{' '}
                   <span className="fs-6 fw-normal">
-                    (-23.6% <CIcon icon={cilArrowBottom} />)
+                    ({percentage(4, 9)}%{' '}
+                    <CIcon icon={percentage(4, 9) < 0 ? cilArrowBottom : cilArrowTop} />)
                   </span>
                 </>
               }

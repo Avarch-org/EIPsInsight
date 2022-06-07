@@ -179,19 +179,33 @@ const Dashboard = (props) => {
       activity: 'Last week',
     },
   ]
-
+  const [data, setInfo1] = useState()
   const [info, setInfo] = useState()
-  console.log(props.data)
+
+  // async function fetchData() {
+  //   const fullResponse = await fetch(
+  //     'https://sheet.best/api/sheets/03682d10-57f7-4947-a6c9-32ee1cfc4e11',
+  //   )
+  //   const responseJson = await fullResponse.json()
+  //   console.log(responseJson)
+  //   setInfo1(responseJson)
+  // }
 
   useEffect(() => {
-    setInfo(JSON.parse(localStorage.getItem('count')))
+    // fetchData()
+    console.log(localStorage.getItem('count'))
+    if (localStorage.getItem('count') !== 'undefined') {
+      setInfo(JSON.parse(localStorage.getItem('count')))
+    }
   }, [])
 
   useEffect(() => {
     if (props.data !== undefined) {
+      console.log(props.data)
       setInfo(props.data)
       localStorage.setItem('count', JSON.stringify(props.data))
     } else {
+      console.log(props.data)
       localStorage.setItem('count', JSON.stringify(info))
     }
   }, [info])
@@ -200,7 +214,7 @@ const Dashboard = (props) => {
 
   return (
     <>
-      <WidgetsDropdown data={props.data} />
+      <WidgetsDropdown data={data} />
       <CCard className="mb-4">
         <CCardBody>
           <CRow>
