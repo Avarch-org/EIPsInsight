@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   CContainer,
@@ -10,13 +10,15 @@ import {
   CHeaderToggler,
   CNavLink,
   CNavItem,
+  CTooltip,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilBell, cilEnvelopeOpen, cilList, cilMenu } from '@coreui/icons'
+import { cibDiscord, cibGithub, cilBell, cilEnvelopeOpen, cilList, cilMenu } from '@coreui/icons'
 
 import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
-import { logo } from 'src/assets/brand/logo'
+import logo from 'src/assets/logo2.gif'
+import './AppHeader.styles.css'
 
 const AppHeader = () => {
   const dispatch = useDispatch()
@@ -32,35 +34,67 @@ const AppHeader = () => {
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
         <CHeaderBrand className="mx-auto d-md-none" to="/">
-          <CIcon icon={logo} height={48} alt="Logo" />
+          <img src={logo} height={48} alt="Logo" style={{ width: '87px', height: '100%' }} />
         </CHeaderBrand>
         <CHeaderNav className="d-none d-md-flex me-auto">
           <CNavItem>
             <CNavLink to="/dashboard" component={NavLink}>
-              Dashboard
+              <Link to="/typeAll" style={{ textDecoration: 'none', color: 'inherit' }}>
+                Type
+              </Link>
             </CNavLink>
           </CNavItem>
           <CNavItem>
-            <CNavLink href="#">Users</CNavLink>
+            <CNavLink href="#">
+              <Link to="/statusAll" style={{ textDecoration: 'none', color: 'inherit' }}>
+                Status
+              </Link>
+            </CNavLink>
           </CNavItem>
           <CNavItem>
-            <CNavLink href="#">Settings</CNavLink>
+            <CNavLink href="#">
+              <Link to="/mayCharts" style={{ textDecoration: 'none', color: 'inherit' }}>
+                Insight
+              </Link>
+            </CNavLink>
           </CNavItem>
         </CHeaderNav>
         <CHeaderNav>
           <CNavItem>
             <CNavLink href="#">
-              <CIcon icon={cilBell} size="lg" />
+              <CTooltip content="Github source" placement="bottom">
+                <a
+                  href="https://github.com/ethereum/EIPs"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="githubIcon"
+                >
+                  <CIcon icon={cibGithub} size="lg" />
+                </a>
+              </CTooltip>
             </CNavLink>
           </CNavItem>
           <CNavItem>
             <CNavLink href="#">
-              <CIcon icon={cilList} size="lg" />
+              <CTooltip content="Join our Discord server" placement="bottom">
+                <a
+                  href="https://discord.com/channels/916850601919393832/975355006322606130/986317048068051035"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="discordIcon"
+                >
+                  <CIcon icon={cibDiscord} size="lg" />
+                </a>
+              </CTooltip>
             </CNavLink>
           </CNavItem>
           <CNavItem>
             <CNavLink href="#">
-              <CIcon icon={cilEnvelopeOpen} size="lg" />
+              <CTooltip content="Share your feedback with us" placement="bottom">
+                <Link to="/contactUs" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <CIcon icon={cilEnvelopeOpen} size="lg" />
+                </Link>
+              </CTooltip>
             </CNavLink>
           </CNavItem>
         </CHeaderNav>

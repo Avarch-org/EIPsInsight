@@ -1,0 +1,9 @@
+.cardHeader {
+  transition: all 0.7s;
+  cursor: pointer;
+}
+
+.cardHeader:hover {
+  background-color: black;
+  color: white;
+}

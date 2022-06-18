@@ -1,0 +1,15 @@
+.githubIcon {
+  color: #868e96;
+}
+
+.discordIcon {
+  color: #868e96;
+}
+
+.githubIcon:hover {
+  color: black;
+}
+
+.discordIcon:hover {
+  color: black;
+}

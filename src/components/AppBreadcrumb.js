@@ -33,14 +33,16 @@ const AppBreadcrumb = () => {
 
   return (
     <CBreadcrumb className="m-0 ms-2">
-      <CBreadcrumbItem href="/">Home</CBreadcrumbItem>
+      <CBreadcrumbItem href="/">
+        <label style={{ cursor: 'pointer', color: 'gray' }}>Home</label>
+      </CBreadcrumbItem>
       {breadcrumbs.map((breadcrumb, index) => {
         return (
           <CBreadcrumbItem
             {...(breadcrumb.active ? { active: true } : { href: breadcrumb.pathname })}
             key={index}
           >
-            {breadcrumb.name}
+            <label style={{ color: 'black', fontWeight: 'bold' }}>{breadcrumb.name}</label>
           </CBreadcrumbItem>
         )
       })}

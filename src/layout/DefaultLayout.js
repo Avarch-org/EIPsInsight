@@ -7,7 +7,7 @@ const DefaultLayout = () => {
 
   async function fetchData() {
     const fullResponse = await fetch(
-      'https://sheet.best/api/sheets/03682d10-57f7-4947-a6c9-32ee1cfc4e11',
+      'https://sheet.best/api/sheets/83d87976-3d1e-445e-9e40-3c12017eade1',
     )
     const responseJson = await fullResponse.json()
     console.log(responseJson)

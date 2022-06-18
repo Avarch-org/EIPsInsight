@@ -28,27 +28,43 @@ function WidgetsDropdown(props) {
   //   console.log(responseJson)
   //   setInfo1(responseJson)
   // }
+  const [post, getPost] = useState([])
+
+  const API = 'http://localhost:5000/api/v1/tours'
+  const fetchPost = () => {
+    fetch(API)
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res.data.tours)
+        getPost(res.data.tours)
+      })
+  }
 
   useEffect(() => {
-    // fetchData()
-    console.log(localStorage.getItem('count'))
-    if (localStorage.getItem('count') !== 'undefined') {
-      setInfo(JSON.parse(localStorage.getItem('count')))
-    }
+    fetchPost()
   }, [])
 
-  useEffect(() => {
-    if (props.data !== undefined) {
-      console.log(props.data)
-      setInfo(props.data)
-      localStorage.setItem('count', JSON.stringify(props.data))
-    } else {
-      console.log(props.data)
-      localStorage.setItem('count', JSON.stringify(info))
-    }
-  }, [info])
+  // useEffect(() => {
+  //   // fetchData()
+  //   console.log(localStorage.getItem('count'))
+  //   if (localStorage.getItem('count') !== 'undefined') {
+  //     setInfo(JSON.parse(localStorage.getItem('count')))
+  //   }
+  // }, [])
+
+  // useEffect(() => {
+  //   if (props.data !== undefined) {
+  //     console.log(props.data)
+  //     setInfo(props.data)
+  //     localStorage.setItem('count', JSON.stringify(props.data))
+  //   } else {
+  //     console.log(props.data)
+  //     localStorage.setItem('count', JSON.stringify(info))
+  //   }
+  // }, [info])
 
   console.log(info)
+  console.log(post)
 
   function percentage(val, original) {
     let value = info === undefined ? 0 : parseInt(info[55][val])
@@ -69,14 +85,23 @@ function WidgetsDropdown(props) {
               color="primary"
               value={
                 <>
-                  {info === undefined ? '0' : info[2][6]}{' '}
+                  <a
+                    href="https://eips.ethereum.org/core"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ textDecoration: 'none', color: 'white' }}
+                  >
+                    {post.length === 0 ? 0 : post[0].value[0]}
+                    {/* {info === undefined ? '0' : info[2][6]} */}{' '}
+                  </a>
                   <span className="fs-6 fw-normal">
                     ({percentage(3, 6)}%{' '}
                     <CIcon icon={percentage(3, 6) < 0 ? cilArrowBottom : cilArrowTop} />)
                   </span>
                 </>
               }
-              title={`${info === undefined ? '0' : info[1][6]}`}
+              // title={`${info === undefined ? '0' : info[1][6]}`}
+              title={`${post.length === 0 ? 0 : post[0].standardTrack[0]}`}
               // action={
               //   <CDropdown alignment="end">
               //     <CDropdownToggle color="transparent" caret={false} className="p-0">
@@ -174,20 +199,29 @@ function WidgetsDropdown(props) {
               }
             />
           </CCol>
+
           <CCol sm={6} lg={3}>
             <CWidgetStatsA
               className="mb-4"
               color="info"
               value={
                 <>
-                  {`${info === undefined ? '0' : info[2][7]}`}{' '}
+                  <a
+                    href="https://eips.ethereum.org/networking"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ textDecoration: 'none', color: 'white' }}
+                  >
+                    {post.length === 0 ? 0 : post[0].value[1]}
+                    {/* {info === undefined ? '0' : info[2][7]} */}{' '}
+                  </a>
                   <span className="fs-6 fw-normal">
                     ({percentage(5, 7)}%{' '}
                     <CIcon icon={percentage(5, 7) < 0 ? cilArrowBottom : cilArrowTop} />)
                   </span>
                 </>
               }
-              title={`${info === undefined ? '0' : info[1][7]}`}
+              title={`${post.length === 0 ? 0 : post[0].standardTrack[1]}`}
               // action={
               //   <CDropdown alignment="end">
               //     <CDropdownToggle color="transparent" caret={false} className="p-0">
@@ -278,14 +312,23 @@ function WidgetsDropdown(props) {
               color="warning"
               value={
                 <>
-                  {`${info === undefined ? '0' : info[2][8]}`}{' '}
+                  <a
+                    href="https://eips.ethereum.org/interface"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ textDecoration: 'none', color: 'white' }}
+                  >
+                    {post.length === 0 ? 0 : post[0].value[2]}
+                    {/* {info === undefined ? '0' : info[2][8]} */}{' '}
+                  </a>
                   <span className="fs-6 fw-normal">
                     ({percentage(6, 8)}%{' '}
                     <CIcon icon={percentage(6, 8) < 0 ? cilArrowBottom : cilArrowTop} />)
                   </span>
                 </>
               }
-              title={`${info === undefined ? '0' : info[1][8]}`}
+              // title={`${info === undefined ? '0' : info[1][8]}`}
+              title={`${post.length === 0 ? 0 : post[0].standardTrack[2]}`}
               // action={
               //   <CDropdown alignment="end">
               //     <CDropdownToggle color="transparent" caret={false} className="p-0">
@@ -310,6 +353,7 @@ function WidgetsDropdown(props) {
                         label: 'Interface',
                         backgroundColor: 'rgba(255,255,255,.2)',
                         borderColor: 'rgba(255,255,255,.55)',
+                        pointBackgroundColor: 'rgba(241, 196, 15, 1)',
                         data: [0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0],
                         fill: true,
                       },
@@ -352,14 +396,23 @@ function WidgetsDropdown(props) {
               color="danger"
               value={
                 <>
-                  {`${info === undefined ? '0' : info[2][9]}`}{' '}
+                  <a
+                    href="https://eips.ethereum.org/erc"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ textDecoration: 'none', color: 'white' }}
+                  >
+                    {post.length === 0 ? 0 : post[0].value[3]}
+                    {/* {info === undefined ? '0' : info[2][9]} */}{' '}
+                  </a>
                   <span className="fs-6 fw-normal">
                     ({percentage(4, 9)}%{' '}
                     <CIcon icon={percentage(4, 9) < 0 ? cilArrowBottom : cilArrowTop} />)
                   </span>
                 </>
               }
-              title={`${info === undefined ? '0' : info[1][9]}`}
+              // title={`${info === undefined ? '0' : info[1][9]}`}
+              title={`${post.length === 0 ? 0 : post[0].standardTrack[3]}`}
               // action={
               //   <CDropdown alignment="end">
               //     <CDropdownToggle color="transparent" caret={false} className="p-0">
@@ -384,6 +437,7 @@ function WidgetsDropdown(props) {
                         label: 'ERC',
                         backgroundColor: 'rgba(255,255,255,.2)',
                         borderColor: 'rgba(255,255,255,.55)',
+                        pointBackgroundColor: 'rgba(231, 76, 60, 1)',
                         data: [
                           `${info === undefined ? '0' : info[46][4]}`,
                           `${info === undefined ? '0' : info[47][4]}`,

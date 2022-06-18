@@ -12,6 +12,8 @@ import {
   CChartRadar,
 } from '@coreui/react-chartjs'
 import { DocsCallout } from 'src/components'
+import { Link } from 'react-router-dom'
+import './mayCharts.styles.css'
 
 const mayCharts = (props) => {
   const [info, setInfo] = useState()
@@ -45,7 +47,9 @@ const mayCharts = (props) => {
       </CCol> */}
       <CCol xs={6}>
         <CCard className="mb-4">
-          <CCardHeader>Draft</CCardHeader>
+          <Link to="/febDraftTable" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <CCardHeader className="cardHeader">Draft</CCardHeader>
+          </Link>
           <CCardBody>
             <CChartBar
               data={{
@@ -54,6 +58,7 @@ const mayCharts = (props) => {
                   {
                     label: 'Core',
                     backgroundColor: '#f87979',
+                    borderRadius: 10,
                     data: [
                       `${info === undefined ? '0' : info[46][3]}`,
                       `${info === undefined ? '0' : info[47][3]}`,
@@ -67,6 +72,7 @@ const mayCharts = (props) => {
                   {
                     label: 'ERC',
                     backgroundColor: '#ffd43b',
+                    borderRadius: 10,
                     data: [
                       `${info === undefined ? '0' : info[46][4]}`,
                       `${info === undefined ? '0' : info[47][4]}`,
@@ -80,6 +86,7 @@ const mayCharts = (props) => {
                   {
                     label: 'Networking',
                     backgroundColor: '#a5d8ff',
+                    borderRadius: 10,
                     data: [
                       `${info === undefined ? '0' : info[46][5]}`,
                       `${info === undefined ? '0' : info[47][5]}`,
@@ -93,6 +100,7 @@ const mayCharts = (props) => {
                   {
                     label: 'Interface',
                     backgroundColor: '#8ce99a',
+                    borderRadius: 10,
                     data: [
                       `${info === undefined ? '0' : info[46][6]}`,
                       `${info === undefined ? '0' : info[47][6]}`,
@@ -112,7 +120,9 @@ const mayCharts = (props) => {
       </CCol>
       <CCol xs={6}>
         <CCard className="mb-4">
-          <CCardHeader>Final</CCardHeader>
+          <Link to="/febFinalTable" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <CCardHeader className="cardHeader">Final</CCardHeader>
+          </Link>
           <CCardBody>
             <CChartLine
               data={{
@@ -120,9 +130,9 @@ const mayCharts = (props) => {
                 datasets: [
                   {
                     label: 'Core',
-                    backgroundColor: '#ff8787',
-                    borderColor: '#ff8787',
-                    pointBackgroundColor: '#ff8787',
+                    backgroundColor: '#f87979',
+                    borderColor: '#f87979',
+                    pointBackgroundColor: '#f87979',
                     pointBorderColor: '#fff',
                     data: [
                       `${info === undefined ? '0' : info[46][8]}`,
@@ -136,10 +146,10 @@ const mayCharts = (props) => {
                   },
                   {
                     label: 'ERC',
-                    backgroundColor: '#748ffc',
-                    borderColor: '#748ffc',
-                    pointBackgroundColor: '#748ffc',
-                    pointBorderColor: '#fff',
+                    backgroundColor: '#ffd43b',
+                    borderColor: '#ffd43b',
+                    pointBackgroundColor: '#ffd43b',
+                    pointBorderColor: '#ffd43b',
                     data: [
                       `${info === undefined ? '0' : info[46][9]}`,
                       `${info === undefined ? '0' : info[47][9]}`,
@@ -152,9 +162,9 @@ const mayCharts = (props) => {
                   },
                   {
                     label: 'Networking',
-                    backgroundColor: '#69db7c',
-                    borderColor: '#69db7c',
-                    pointBackgroundColor: '#69db7c',
+                    backgroundColor: '#a5d8ff',
+                    borderColor: '#a5d8ff',
+                    pointBackgroundColor: '#a5d8ff',
                     pointBorderColor: '#fff',
                     data: [
                       `${info === undefined ? '0' : info[46][10]}`,
@@ -168,9 +178,9 @@ const mayCharts = (props) => {
                   },
                   {
                     label: 'Interface',
-                    backgroundColor: '#fab005',
-                    borderColor: '#fab005',
-                    pointBackgroundColor: '#fab005',
+                    backgroundColor: '#8ce99a',
+                    borderColor: '#8ce99a',
+                    pointBackgroundColor: '#8ce99a',
                     pointBorderColor: '#fff',
                     data: [
                       `${info === undefined ? '0' : info[46][11]}`,
@@ -190,8 +200,324 @@ const mayCharts = (props) => {
       </CCol>
       <CCol xs={6}>
         <CCard className="mb-4">
-          <CCardHeader>Draft EIPs vs Potential Proposal</CCardHeader>
+          <Link to="/febReviewTable" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <CCardHeader className="cardHeader">Review</CCardHeader>
+          </Link>
           <CCardBody>
+            <CChartBar
+              data={{
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'],
+                datasets: [
+                  {
+                    label: 'Core',
+                    backgroundColor: '#f87979',
+                    data: [
+                      `${info === undefined ? '0' : info[123][2]}`,
+                      `${info === undefined ? '0' : info[116][2]}`,
+                      `${info === undefined ? '0' : info[109][2]}`,
+                      `${info === undefined ? '0' : info[102][2]}`,
+                      `${info === undefined ? '0' : info[95][2]}`,
+                      `${info === undefined ? '0' : info[88][2]}`,
+                      `${info === undefined ? '0' : info[81][2]}`,
+                    ],
+                  },
+                  {
+                    label: 'ERC',
+                    backgroundColor: '#ffd43b',
+                    data: [
+                      `${info === undefined ? '0' : info[124][2]}`,
+                      `${info === undefined ? '0' : info[117][2]}`,
+                      `${info === undefined ? '0' : info[110][2]}`,
+                      `${info === undefined ? '0' : info[103][2]}`,
+                      `${info === undefined ? '0' : info[96][2]}`,
+                      `${info === undefined ? '0' : info[89][2]}`,
+                      `${info === undefined ? '0' : info[82][2]}`,
+                    ],
+                  },
+                  {
+                    label: 'Networking',
+                    backgroundColor: '#a5d8ff',
+                    data: [
+                      `${info === undefined ? '0' : info[125][2]}`,
+                      `${info === undefined ? '0' : info[118][2]}`,
+                      `${info === undefined ? '0' : info[111][2]}`,
+                      `${info === undefined ? '0' : info[104][2]}`,
+                      `${info === undefined ? '0' : info[97][2]}`,
+                      `${info === undefined ? '0' : info[90][2]}`,
+                      `${info === undefined ? '0' : info[83][2]}`,
+                    ],
+                  },
+                  {
+                    label: 'Interface',
+                    backgroundColor: '#8ce99a',
+                    data: [
+                      `${info === undefined ? '0' : info[126][2]}`,
+                      `${info === undefined ? '0' : info[119][2]}`,
+                      `${info === undefined ? '0' : info[112][2]}`,
+                      `${info === undefined ? '0' : info[105][2]}`,
+                      `${info === undefined ? '0' : info[98][2]}`,
+                      `${info === undefined ? '0' : info[91][2]}`,
+                      `${info === undefined ? '0' : info[84][2]}`,
+                    ],
+                  },
+                ],
+              }}
+              labels="months"
+            />
+          </CCardBody>
+        </CCard>
+      </CCol>
+      <CCol xs={6}>
+        <CCard className="mb-4">
+          <Link to="/febLastCallTable" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <CCardHeader className="cardHeader">Last Call</CCardHeader>
+          </Link>
+          <CCardBody>
+            <CChartLine
+              data={{
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'],
+                datasets: [
+                  {
+                    label: 'Core',
+                    backgroundColor: '#f87979',
+                    borderColor: '#f87979',
+                    pointBackgroundColor: '#f87979',
+                    pointBorderColor: '#fff',
+                    data: [
+                      `${info === undefined ? '0' : info[123][3]}`,
+                      `${info === undefined ? '0' : info[116][3]}`,
+                      `${info === undefined ? '0' : info[109][3]}`,
+                      `${info === undefined ? '0' : info[102][3]}`,
+                      `${info === undefined ? '0' : info[95][3]}`,
+                      `${info === undefined ? '0' : info[88][3]}`,
+                      `${info === undefined ? '0' : info[81][3]}`,
+                    ],
+                  },
+                  {
+                    label: 'ERC',
+                    backgroundColor: '#ffd43b',
+                    borderColor: '#ffd43b',
+                    pointBackgroundColor: '#ffd43b',
+                    pointBorderColor: '#fff',
+                    data: [
+                      `${info === undefined ? '0' : info[124][3]}`,
+                      `${info === undefined ? '0' : info[117][3]}`,
+                      `${info === undefined ? '0' : info[110][3]}`,
+                      `${info === undefined ? '0' : info[103][3]}`,
+                      `${info === undefined ? '0' : info[96][3]}`,
+                      `${info === undefined ? '0' : info[89][3]}`,
+                      `${info === undefined ? '0' : info[82][3]}`,
+                    ],
+                  },
+                  {
+                    label: 'Networking',
+                    backgroundColor: '#a5d8ff',
+                    borderColor: '#a5d8ff',
+                    pointBackgroundColor: '#a5d8ff',
+                    pointBorderColor: '#fff',
+                    data: [
+                      `${info === undefined ? '0' : info[125][3]}`,
+                      `${info === undefined ? '0' : info[118][3]}`,
+                      `${info === undefined ? '0' : info[111][3]}`,
+                      `${info === undefined ? '0' : info[104][3]}`,
+                      `${info === undefined ? '0' : info[97][3]}`,
+                      `${info === undefined ? '0' : info[90][3]}`,
+                      `${info === undefined ? '0' : info[83][3]}`,
+                    ],
+                  },
+                  {
+                    label: 'Interface',
+                    backgroundColor: '#8ce99a',
+                    borderColor: '#8ce99a',
+                    pointBackgroundColor: '#8ce99a',
+                    pointBorderColor: '#fff',
+                    data: [
+                      `${info === undefined ? '0' : info[126][3]}`,
+                      `${info === undefined ? '0' : info[119][3]}`,
+                      `${info === undefined ? '0' : info[112][3]}`,
+                      `${info === undefined ? '0' : info[105][3]}`,
+                      `${info === undefined ? '0' : info[98][3]}`,
+                      `${info === undefined ? '0' : info[91][3]}`,
+                      `${info === undefined ? '0' : info[84][3]}`,
+                    ],
+                  },
+                ],
+              }}
+            />
+          </CCardBody>
+        </CCard>
+      </CCol>
+      <CCol xs={6}>
+        <CCard className="mb-4">
+          <Link to="/febStagnantTable" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <CCardHeader className="cardHeader">Stagnant</CCardHeader>
+          </Link>
+          <CCardBody>
+            <CChartRadar
+              data={{
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'],
+                datasets: [
+                  {
+                    label: 'Core',
+                    backgroundColor: 'rgba(255, 245, 245, 0.2)',
+                    borderColor: '#ff8787',
+                    pointBackgroundColor: '#f03e3e',
+                    pointBorderColor: '#fff',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(220, 220, 220, 1)',
+                    data: [
+                      `${info === undefined ? '0' : info[123][4]}`,
+                      `${info === undefined ? '0' : info[116][4]}`,
+                      `${info === undefined ? '0' : info[109][4]}`,
+                      `${info === undefined ? '0' : info[102][4]}`,
+                      `${info === undefined ? '0' : info[95][4]}`,
+                      `${info === undefined ? '0' : info[88][4]}`,
+                      `${info === undefined ? '0' : info[81][4]}`,
+                    ],
+                  },
+                  {
+                    label: 'ERC',
+                    backgroundColor: 'rgba(255, 224, 102, 0.2)',
+                    borderColor: '#ffe066',
+                    pointBackgroundColor: '#fab005',
+                    pointBorderColor: '#fff',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(151, 187, 205, 1)',
+                    data: [
+                      `${info === undefined ? '0' : info[124][4]}`,
+                      `${info === undefined ? '0' : info[117][4]}`,
+                      `${info === undefined ? '0' : info[110][4]}`,
+                      `${info === undefined ? '0' : info[103][4]}`,
+                      `${info === undefined ? '0' : info[96][4]}`,
+                      `${info === undefined ? '0' : info[89][4]}`,
+                      `${info === undefined ? '0' : info[82][4]}`,
+                    ],
+                  },
+                  {
+                    label: 'Interface',
+                    backgroundColor: 'rgba(231, 245, 255, 1)',
+                    borderColor: '#339af0',
+                    pointBackgroundColor: '#339af0',
+                    pointBorderColor: '#fff',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(151, 187, 205, 1)',
+                    data: [
+                      `${info === undefined ? '0' : info[125][4]}`,
+                      `${info === undefined ? '0' : info[118][4]}`,
+                      `${info === undefined ? '0' : info[111][4]}`,
+                      `${info === undefined ? '0' : info[104][4]}`,
+                      `${info === undefined ? '0' : info[97][4]}`,
+                      `${info === undefined ? '0' : info[90][4]}`,
+                      `${info === undefined ? '0' : info[83][4]}`,
+                    ],
+                  },
+                  {
+                    label: 'Networking',
+                    backgroundColor: 'rgba(235, 251, 238, 1)',
+                    borderColor: '#40c057',
+                    pointBackgroundColor: '#40c057',
+                    pointBorderColor: '#fff',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(151, 187, 205, 1)',
+                    data: [
+                      `${info === undefined ? '0' : info[126][4]}`,
+                      `${info === undefined ? '0' : info[119][4]}`,
+                      `${info === undefined ? '0' : info[112][4]}`,
+                      `${info === undefined ? '0' : info[105][4]}`,
+                      `${info === undefined ? '0' : info[98][4]}`,
+                      `${info === undefined ? '0' : info[91][4]}`,
+                      `${info === undefined ? '0' : info[84][4]}`,
+                    ],
+                  },
+                ],
+              }}
+              options={{
+                aspectRatio: 2,
+
+                tooltips: {
+                  enabled: true,
+                },
+              }}
+            />
+          </CCardBody>
+        </CCard>
+      </CCol>
+      <CCol xs={6}>
+        <CCard className="mb-4">
+          <Link to="/febWithdrawnTable" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <CCardHeader className="cardHeader">Withdrawn</CCardHeader>
+          </Link>
+          <CCardBody>
+            <CChartBar
+              data={{
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'],
+                datasets: [
+                  {
+                    label: 'Core',
+                    backgroundColor: '#f87979',
+                    data: [
+                      `${info === undefined ? '0' : info[123][5]}`,
+                      `${info === undefined ? '0' : info[116][5]}`,
+                      `${info === undefined ? '0' : info[109][5]}`,
+                      `${info === undefined ? '0' : info[102][5]}`,
+                      `${info === undefined ? '0' : info[95][5]}`,
+                      `${info === undefined ? '0' : info[88][5]}`,
+                      `${info === undefined ? '0' : info[81][5]}`,
+                    ],
+                  },
+                  {
+                    label: 'ERC',
+                    backgroundColor: '#ffd43b',
+                    data: [
+                      `${info === undefined ? '0' : info[124][5]}`,
+                      `${info === undefined ? '0' : info[117][5]}`,
+                      `${info === undefined ? '0' : info[110][5]}`,
+                      `${info === undefined ? '0' : info[103][5]}`,
+                      `${info === undefined ? '0' : info[96][5]}`,
+                      `${info === undefined ? '0' : info[89][5]}`,
+                      `${info === undefined ? '0' : info[82][5]}`,
+                    ],
+                  },
+                  {
+                    label: 'Networking',
+                    backgroundColor: '#a5d8ff',
+                    data: [
+                      `${info === undefined ? '0' : info[125][5]}`,
+                      `${info === undefined ? '0' : info[118][5]}`,
+                      `${info === undefined ? '0' : info[111][5]}`,
+                      `${info === undefined ? '0' : info[104][5]}`,
+                      `${info === undefined ? '0' : info[97][5]}`,
+                      `${info === undefined ? '0' : info[90][5]}`,
+                      `${info === undefined ? '0' : info[83][5]}`,
+                    ],
+                  },
+                  {
+                    label: 'Interface',
+                    backgroundColor: '#8ce99a',
+                    data: [
+                      `${info === undefined ? '0' : info[126][5]}`,
+                      `${info === undefined ? '0' : info[119][5]}`,
+                      `${info === undefined ? '0' : info[112][5]}`,
+                      `${info === undefined ? '0' : info[105][5]}`,
+                      `${info === undefined ? '0' : info[98][5]}`,
+                      `${info === undefined ? '0' : info[91][5]}`,
+                      `${info === undefined ? '0' : info[84][5]}`,
+                    ],
+                  },
+                ],
+              }}
+              labels="months"
+            />
+          </CCardBody>
+        </CCard>
+      </CCol>
+      <CCol xs={6}>
+        <CCard className="mb-4">
+          <CCardHeader className="cardHeader">Draft EIPs vs Potential Proposal</CCardHeader>
+          <CCardBody>
+            <div style={{ marginBottom: '10px', display: 'flex', justifyContent: 'center' }}>
+              Draft EIPs
+            </div>
             <CChartDoughnut
               data={{
                 labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'],
@@ -221,6 +547,52 @@ const mayCharts = (props) => {
                       `${info === undefined ? '0' : info[52][2]}`,
                     ],
                   },
+                ],
+              }}
+              options={{
+                aspectRatio: 2,
+                plugins: {
+                  tooltip: {
+                    callbacks: {
+                      label: (context) => {
+                        return `Draft: ${context.parsed}`
+                      },
+                    },
+                  },
+                  afterDraw: function (chart) {
+                    console.log(chart)
+                    if (chart.data.datasets[0].data.length < 1) {
+                      let ctx = chart.ctx
+                      let width = chart.width
+                      let height = chart.height
+                      ctx.textAlign = 'center'
+                      ctx.textBaseline = 'middle'
+                      ctx.font = '30px Arial'
+                      ctx.fillText('No data to display', width / 2, height / 2)
+                      ctx.restore()
+                    }
+                  },
+                },
+
+                tooltips: {
+                  enabled: true,
+                },
+              }}
+            />
+            <div
+              style={{
+                marginBottom: '10px',
+                marginTop: '10px',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              Potential Proposal
+            </div>
+            <CChartDoughnut
+              data={{
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'],
+                datasets: [
                   {
                     label: 'Potential Proposal',
                     backgroundColor: [
@@ -247,6 +619,25 @@ const mayCharts = (props) => {
                     ],
                   },
                 ],
+              }}
+              options={{
+                aspectRatio: 2,
+                plugins: {
+                  tooltip: {
+                    callbacks: {
+                      label: (context) => {
+                        return `Potential Proposal: ${context.parsed}`
+                      },
+                    },
+                  },
+                  legend: {
+                    display: false,
+                  },
+                },
+
+                tooltips: {
+                  enabled: true,
+                },
               }}
             />
           </CCardBody>
@@ -291,7 +682,7 @@ const mayCharts = (props) => {
       </CCol> */}
       <CCol xs={6}>
         <CCard className="mb-4">
-          <CCardHeader>Final vs Draft</CCardHeader>
+          <CCardHeader className="cardHeader">Final vs Draft</CCardHeader>
           <CCardBody>
             <CChartRadar
               data={{
